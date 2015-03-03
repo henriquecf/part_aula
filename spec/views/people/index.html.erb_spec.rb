@@ -10,7 +10,7 @@ RSpec.describe "people/index", type: :view do
       ),
       Person.create!(
         :name => "Name",
-        :email => "Email",
+        :email => "Email 2",
         :phone => "Phone"
       )
     ])
@@ -19,7 +19,8 @@ RSpec.describe "people/index", type: :view do
   it "renders a list of people" do
     render
     assert_select "tr>td", :text => "Name".to_s, :count => 2
-    assert_select "tr>td", :text => "Email".to_s, :count => 2
+    assert_select "tr>td", :text => "Email".to_s, :count => 1
+    assert_select "tr>td", :text => "Email 2".to_s, :count => 1
     assert_select "tr>td", :text => "Phone".to_s, :count => 2
   end
 end
