@@ -24,11 +24,11 @@ RSpec.describe GradesController, type: :controller do
   # Grade. As you add validations to Grade, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: "Babes", year: 2014 }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: "", year: nil }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,15 @@ RSpec.describe GradesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "Babes 2", year: 2015 }
       }
 
       it "updates the requested grade" do
         grade = Grade.create! valid_attributes
         put :update, {:id => grade.to_param, :grade => new_attributes}, valid_session
         grade.reload
-        skip("Add assertions for updated state")
+        expect(grade.name).to eq("Babes 2")
+        expect(grade.year).to eq(2015)
       end
 
       it "assigns the requested grade as @grade" do

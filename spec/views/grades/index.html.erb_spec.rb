@@ -9,7 +9,7 @@ RSpec.describe "grades/index", type: :view do
       ),
       Grade.create!(
         :name => "Name",
-        :year => 1
+        :year => 2
       )
     ])
   end
@@ -17,6 +17,7 @@ RSpec.describe "grades/index", type: :view do
   it "renders a list of grades" do
     render
     assert_select "tr>td", :text => "Name".to_s, :count => 2
-    assert_select "tr>td", :text => 1.to_s, :count => 2
+    assert_select "tr>td", :text => 1.to_s, :count => 1
+    assert_select "tr>td", :text => 2.to_s, :count => 1
   end
 end
