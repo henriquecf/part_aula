@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :enrollment do
     role "MyString"
-person nil
-grade nil
+    person
+    grade
   end
 
 end

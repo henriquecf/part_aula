@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "enrollments/edit", type: :view do
   before(:each) do
-    @enrollment = assign(:enrollment, Enrollment.create!(
-      :role => "MyString",
-      :person => nil,
-      :grade => nil
-    ))
+    @enrollment = assign(:enrollment, create(:enrollment))
   end
 
   it "renders the edit enrollment form" do

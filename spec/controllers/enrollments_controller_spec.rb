@@ -23,8 +23,16 @@ RSpec.describe EnrollmentsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Enrollment. As you add validations to Enrollment, be sure to
   # adjust the attributes here as well.
+  let(:person) {
+    create(:person)
+  }
+  
+  let(:grade) {
+    create(:grade)
+  }
+  
   let(:valid_attributes) {
-    { role: "student" }
+    { role: "student", person_id: person.id, grade_id: grade.id }
   }
 
   let(:invalid_attributes) {

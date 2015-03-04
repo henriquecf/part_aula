@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :grade do
-    name "MyString"
-year 1
+    sequence :name do |i|
+      "Cycle #{i}"
+    end
+    year 1
   end
-
 end
