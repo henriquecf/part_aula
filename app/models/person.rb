@@ -4,4 +4,6 @@ class Person < ActiveRecord::Base
   
   has_many :enrollments
   has_many :grades, through: :enrollments
+  has_many :attendances
+  has_many :meetings, through: :attendances
 end

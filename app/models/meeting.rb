@@ -1,5 +1,7 @@
 class Meeting < ActiveRecord::Base
-  belongs_to :grade
-  
   validates :date, presence: true
+  
+  belongs_to :grade
+  has_many :attendances
+  has_many :people, through: :attendances
 end
