@@ -4,5 +4,6 @@ FactoryGirl.define do
       "Cycle #{i}"
     end
     year 1
+    institution
   end
 end

@@ -1,5 +1,5 @@
 class Grade < ActiveRecord::Base
-  validates :name, :year, presence: true
+  validates :name, :year, :institution, presence: true
   validates :name, uniqueness: { scope: :year }
   
   belongs_to :institution
