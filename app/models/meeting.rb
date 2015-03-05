@@ -1,7 +1,7 @@
 class Meeting < ActiveRecord::Base
-  validates :date, presence: true
+  validates :date, :grade, presence: true
   
   belongs_to :grade
-  has_many :attendances
+  has_many :attendances, inverse_of: :meeting
   has_many :people, through: :attendances
 end
