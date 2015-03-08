@@ -1,0 +1,12 @@
+= simple_form_for(@person) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :email
+    = f.input :phone
+    = f.date_select :date_of_birth
+    = f.select :gender, [[t("male", default: "Male"), "M"], [t("female", default: "Female"), "F"]], include_blank: true
+
+  .form-actions
+    = f.button :submit

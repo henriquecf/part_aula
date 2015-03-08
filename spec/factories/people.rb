@@ -5,6 +5,7 @@ FactoryGirl.define do
     sequence :email do |i|
       "email#{i}@example.com"
     end
+    gender "M"
     phone "MyString"
   end
 

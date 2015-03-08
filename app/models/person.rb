@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  validates :name, :gender, presence: true
+  validates :name, :gender, :date_of_birth, presence: true
   validates :gender, inclusion: { in: %w[M m F f] }
   validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   
