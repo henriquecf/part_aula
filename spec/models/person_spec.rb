@@ -8,6 +8,10 @@ RSpec.describe Person, type: :model do
     it { should have_many(:grades).through(:enrollments) }
     it { should have_many(:attendances).inverse_of(:person) }
     it { should have_many(:meetings).through(:attendances) }
+    it { should have_many(:child_parents).class_name("ParentChild").with_foreign_key("child_id") }
+    it { should have_many(:parent_children).class_name("ParentChild").with_foreign_key("parent_id") }
+    it { should have_many(:parents).through(:child_parents) }
+    it { should have_many(:children).through(:parent_children) }
     
     describe "valid_email" do
       it "should accept a valid email" do
