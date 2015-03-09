@@ -5,8 +5,10 @@ RSpec.describe Person, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:gender) }
     it { should validate_presence_of(:date_of_birth) }
+    it { should validate_presence_of(:institution) }
     it { should validate_inclusion_of(:gender).in_array(%w[M m F f])}
-    it { should validate_uniqueness_of(:email) }
+    it { should validate_uniqueness_of(:email).scoped_to(:institution_id) }
+    it { should belong_to(:institution) }
     it { should have_many(:enrollments).inverse_of(:person) }
     it { should have_many(:grades).through(:enrollments) }
     it { should have_many(:attendances).inverse_of(:person) }

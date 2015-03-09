@@ -7,6 +7,7 @@ FactoryGirl.define do
     end
     gender "M"
     phone "MyString"
+    institution
   end
 
 end

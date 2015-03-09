@@ -1,8 +1,10 @@
 class Person < ActiveRecord::Base
-  validates :name, :gender, :date_of_birth, presence: true
+  validates :name, :gender, :date_of_birth, :institution, presence: true
   validates :gender, inclusion: { in: %w[M m F f] }
-  validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :email, uniqueness: { scope: :institution }, 
+                    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   
+  belongs_to :institution
   has_many :enrollments, inverse_of: :person
   has_many :grades, through: :enrollments
   has_many :attendances, inverse_of: :person
