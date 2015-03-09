@@ -156,5 +156,25 @@ RSpec.describe PeopleController, type: :controller do
       expect(response).to redirect_to(people_url)
     end
   end
+  
+  describe "POST #relate_parent" do
+    before do
+      @child = create(:person)
+      @parent = create(:person)
+      post :relate_parent, id: @child.id, parent_id: @parent.id
+    end
+    
+    it "should relate @parent as parent of @child" do
+      expect(@child.parents).to include(@parent)
+    end
+    
+    it "should relate @parent as parent of @child" do
+      expect(@parent.children).to include(@child)
+    end
+    
+    it "should redirect to child" do
+      expect(response).to redirect_to(person_path(@child))
+    end
+  end
 
 end

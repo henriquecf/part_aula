@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :relate_parent]
 
   # GET /people
   # GET /people.json
@@ -45,6 +45,13 @@ class PeopleController < ApplicationController
   # DELETE /people/1.json
   def destroy
     @person.destroy
+    
+    respond_with(@person)
+  end
+  
+  def relate_parent
+    @parent = Person.find(params[:parent_id])
+    @person.parents << @parent
     
     respond_with(@person)
   end
