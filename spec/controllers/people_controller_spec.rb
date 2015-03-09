@@ -21,6 +21,7 @@ require 'rails_helper'
 RSpec.describe PeopleController, type: :controller do
   
   before do
+    create(:institution)
     @current_user = create(:user)
     sign_in(@current_user)
   end
@@ -43,7 +44,7 @@ RSpec.describe PeopleController, type: :controller do
 
   describe "GET #index" do
     it "assigns all people as @people" do
-      person = Person.create! valid_attributes
+      person = create(:person)
       get :index, {}, valid_session
       expect(assigns(:people)).to eq([person])
     end
@@ -51,7 +52,7 @@ RSpec.describe PeopleController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested person as @person" do
-      person = Person.create! valid_attributes
+      person = create(:person)
       get :show, {:id => person.to_param}, valid_session
       expect(assigns(:person)).to eq(person)
     end
@@ -66,7 +67,7 @@ RSpec.describe PeopleController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested person as @person" do
-      person = Person.create! valid_attributes
+      person = create(:person)
       get :edit, {:id => person.to_param}, valid_session
       expect(assigns(:person)).to eq(person)
     end
@@ -112,7 +113,7 @@ RSpec.describe PeopleController, type: :controller do
       }
 
       it "updates the requested person" do
-        person = Person.create! valid_attributes
+        person = create(:person)
         put :update, {:id => person.to_param, :person => new_attributes}, valid_session
         person.reload
         expect(person.name).to eq("Person 2")
@@ -120,13 +121,13 @@ RSpec.describe PeopleController, type: :controller do
       end
 
       it "assigns the requested person as @person" do
-        person = Person.create! valid_attributes
+        person = create(:person)
         put :update, {:id => person.to_param, :person => valid_attributes}, valid_session
         expect(assigns(:person)).to eq(person)
       end
 
       it "redirects to the person" do
-        person = Person.create! valid_attributes
+        person = create(:person)
         put :update, {:id => person.to_param, :person => valid_attributes}, valid_session
         expect(response).to redirect_to(person)
       end
@@ -134,13 +135,13 @@ RSpec.describe PeopleController, type: :controller do
 
     context "with invalid params" do
       it "assigns the person as @person" do
-        person = Person.create! valid_attributes
+        person = create(:person)
         put :update, {:id => person.to_param, :person => invalid_attributes}, valid_session
         expect(assigns(:person)).to eq(person)
       end
 
       it "re-renders the 'edit' template" do
-        person = Person.create! valid_attributes
+        person = create(:person)
         put :update, {:id => person.to_param, :person => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
@@ -149,14 +150,14 @@ RSpec.describe PeopleController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested person" do
-      person = Person.create! valid_attributes
+      person = create(:person)
       expect {
         delete :destroy, {:id => person.to_param}, valid_session
       }.to change(Person, :count).by(-1)
     end
 
     it "redirects to the people list" do
-      person = Person.create! valid_attributes
+      person = create(:person)
       delete :destroy, {:id => person.to_param}, valid_session
       expect(response).to redirect_to(people_url)
     end

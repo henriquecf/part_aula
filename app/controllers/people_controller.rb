@@ -28,6 +28,7 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(person_params)
+    @person.institution = Institution.first
     @person.save
     
     respond_with(@person)
