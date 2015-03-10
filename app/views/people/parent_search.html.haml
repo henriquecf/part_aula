@@ -9,4 +9,4 @@
   - @people.each do |person|
     %li
       = person.name
-      = link_to t(".relate_parent", default: "Relate parent"), relate_parent_institution_person_path(@institution, @person, person)
+      = link_to t(".relate_parent", default: "Relate parent"), relate_parent_institution_person_path(@institution, @person, person), method: :post
