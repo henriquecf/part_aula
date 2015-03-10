@@ -17,6 +17,7 @@ class Person < ActiveRecord::Base
   
   scope :exclude, ->(*people){ where.not(id: people) }
   scope :match_last_name, ->(last_name){ where("name like '%#{last_name}'") }
+  scope :name_like, ->(name){ where("name like '%#{name}%'") }
   
   def last_name
     name.split.last

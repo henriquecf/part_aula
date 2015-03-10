@@ -61,6 +61,25 @@ RSpec.describe Person, type: :model do
       it "should get people that have the same last name" do
         expect(Person.match_last_name("Faria")).to match_array([@person])
       end
+      
+      it "should get people that have the same last name case insensitive" do
+        expect(Person.match_last_name("faria")).to match_array([@person])
+      end
+    end
+    
+    describe "name_like" do
+      before do
+        @person = create(:person, name: "Bruno Faria")
+        @other_person = create(:person)
+      end
+      
+      it "should get person when name is set" do
+        expect(Person.name_like("Faria")).to match_array([@person])
+      end
+      
+      it "should get person when name is set case insensitive" do
+        expect(Person.name_like("faria")).to match_array([@person])
+      end
     end
   end
   

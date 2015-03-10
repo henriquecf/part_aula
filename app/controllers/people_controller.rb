@@ -58,8 +58,15 @@ class PeopleController < ApplicationController
   end
   
   def parent_search
-    @title = t(".possible_parents", default: "Possible parents")
-    @people = @person.probable_parents
+    if name = params[:name]
+      @title = t(".search_results", default: "Search results")
+      @people = @institution.people.name_like(name)
+    else
+      @title = t(".possible_parents", default: "Possible parents")
+      @people = @person.probable_parents
+    end
+    
+    respond_with(@institution, @people)
   end
 
   private

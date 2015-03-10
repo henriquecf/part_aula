@@ -193,20 +193,43 @@ RSpec.describe PeopleController, type: :controller do
     before do
       @person = create(:person, name: "Bruno Faria", institution: institution)
       @person_with_same_last_name = create(:person, name: "Emely Faria", institution: institution)
-      other_person = create(:person, institution: institution)
-      get :parent_search, id: @person.id, institution_id: institution.id
+      @other_person = create(:person, institution: institution)
     end
     
-    it "should render parent_search" do
-      expect(response).to render_template(:parent_search)
+    context "without params[:name]" do
+      before do
+        get :parent_search, id: @person.id, institution_id: institution.id
+      end
+    
+      it "should render parent_search" do
+        expect(response).to render_template(:parent_search)
+      end
+    
+      it "should assign possible_parents" do
+        expect(assigns(:people)).to match_array([@person_with_same_last_name])
+      end
+    
+      it "should assign title to Possible parents" do
+        expect(assigns(:title)).to eq("Possible parents")
+      end
     end
     
-    it "should assign possible_parents" do
-      expect(assigns(:people)).to match_array([@person_with_same_last_name])
-    end
+    context "with params[:name]" do
+      before do
+        get :parent_search, id: @person.id, institution_id: institution.id, name: @other_person.name.split.first
+      end
     
-    it "should assign title to Possible parents" do
-      expect(assigns(:title)).to eq("Possible parents")
+      it "should render parent_search" do
+        expect(response).to render_template(:parent_search)
+      end
+    
+      it "should assign possible_parents" do
+        expect(assigns(:people)).to match_array([@other_person])
+      end
+    
+      it "should assign title to Possible parents" do
+        expect(assigns(:title)).to eq("Search results")
+      end
     end
   end
 end
