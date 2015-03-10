@@ -70,4 +70,24 @@ RSpec.describe Person, type: :model do
       expect(person.last_name).to eq("Faria")
     end
   end
+    
+  describe "probable_parents" do
+    before do
+      @person = create(:person, name: "Bruno Faria")
+      @probable_parent = create(:person, name: "Emely Faria")
+      @not_probable_parent = create(:person, name: "Ivan Morais")
+    end
+    
+    it "should get people that same the same last_name" do
+      expect(@person.probable_parents).to include(@probable_parent)
+    end
+    
+    it "should not include the person itself" do
+      expect(@person.probable_parents).not_to include(@person)
+    end
+    
+    it "should not include who does not have same last name" do
+      expect(@person.probable_parents).not_to include(@not_probable_parent)
+    end
+  end
 end

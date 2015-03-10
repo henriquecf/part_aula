@@ -202,7 +202,7 @@ RSpec.describe PeopleController, type: :controller do
     end
     
     it "should assign possible_parents" do
-      expect(assigns(:possible_parents)).to match_array([@person_with_same_last_name])
+      expect(assigns(:people)).to match_array([@person_with_same_last_name])
     end
   end
 end

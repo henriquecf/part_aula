@@ -59,7 +59,7 @@ class PeopleController < ApplicationController
   end
   
   def parent_search
-    @possible_parents = @institution.people.match_last_name(@person.last_name).exclude(@person)
+    @people = @person.probable_parents
   end
 
   private

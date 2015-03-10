@@ -21,4 +21,8 @@ class Person < ActiveRecord::Base
   def last_name
     name.split.last
   end
+  
+  def probable_parents
+    Person.match_last_name(last_name).exclude(self)
+  end
 end
