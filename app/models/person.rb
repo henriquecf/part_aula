@@ -14,4 +14,6 @@ class Person < ActiveRecord::Base
   has_many :child_parents, foreign_key: "child_id", class_name: "ParentChild"
   has_many :parents, through: :child_parents
   has_many :children, through: :parent_children
+  
+  scope :exclude, ->(*people){ where.not(id: people) }
 end

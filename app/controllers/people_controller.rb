@@ -59,7 +59,7 @@ class PeopleController < ApplicationController
   end
   
   def parent_search
-    @possible_parents = @institution.people.where("name LIKE '%#{@person.name.split(" ").last}'").where.not(id: @person.id)
+    @possible_parents = @institution.people.where("name LIKE '%#{@person.name.split(" ").last}'").exclude(@person)
   end
 
   private

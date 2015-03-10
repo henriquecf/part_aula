@@ -32,4 +32,24 @@ RSpec.describe Person, type: :model do
       end
     end
   end
+  
+  context "scopes" do
+    describe "exclude" do
+      before do
+        @person = create(:person)
+        @other_person = create(:person)
+        @excluded_person = create(:person)
+      end
+      
+      it "should exclude one person" do
+        expect(Person.exclude(@excluded_person)).not_to include(@excluded_person)
+      end
+      
+      it "should exclude more than one person" do
+        people = Person.exclude(@other_person, @excluded_person)
+        expect(people).not_to include(@excluded_person)
+        expect(people).not_to include(@excluded_person)
+      end
+    end
+  end
 end
