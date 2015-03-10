@@ -58,7 +58,7 @@ class PeopleController < ApplicationController
   end
   
   def parent_search
-    if name = params[:name]
+    if (name = params[:name]) && !name.blank?
       @title = t(".search_results", default: "Search results")
       @people = @institution.people.name_like(name)
     else

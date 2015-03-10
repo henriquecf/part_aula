@@ -231,5 +231,23 @@ RSpec.describe PeopleController, type: :controller do
         expect(assigns(:title)).to eq("Search results")
       end
     end
+    
+    context "with params[:name] blank" do
+      before do
+        get :parent_search, id: @person.id, institution_id: institution.id, name: ""
+      end
+    
+      it "should render parent_search" do
+        expect(response).to render_template(:parent_search)
+      end
+    
+      it "should assign possible_parents" do
+        expect(assigns(:people)).to match_array([@person_with_same_last_name])
+      end
+    
+      it "should assign title to Possible parents" do
+        expect(assigns(:title)).to eq("Possible parents")
+      end
+    end
   end
 end

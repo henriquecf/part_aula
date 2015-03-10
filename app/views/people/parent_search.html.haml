@@ -1,4 +1,10 @@
-%h3= @title
+= form_tag(parent_search_institution_person_path(@institution, @person), method: :get) do
+  = text_field_tag :name, nil, placeholder: t(".search_by_name", default: "Search by name")
+  = submit_tag t("search", default: "Search")
+%h4
+  = @title
+  = t("for", default: "for")
+  = @person.name
 %ul
   - @people.each do |person|
     %li
