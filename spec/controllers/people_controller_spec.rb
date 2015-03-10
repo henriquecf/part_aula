@@ -204,5 +204,9 @@ RSpec.describe PeopleController, type: :controller do
     it "should assign possible_parents" do
       expect(assigns(:people)).to match_array([@person_with_same_last_name])
     end
+    
+    it "should assign title to Possible parents" do
+      expect(assigns(:title)).to eq("Possible parents")
+    end
   end
 end

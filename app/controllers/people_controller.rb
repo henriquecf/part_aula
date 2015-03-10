@@ -58,6 +58,7 @@ class PeopleController < ApplicationController
   end
   
   def parent_search
+    @title = t(".possible_parents", default: "Possible parents")
     @people = @person.probable_parents
   end
 
