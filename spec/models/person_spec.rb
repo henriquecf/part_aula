@@ -63,4 +63,11 @@ RSpec.describe Person, type: :model do
       end
     end
   end
+  
+  describe "#last_name" do
+    it "should return the last name of the person" do
+      person = build(:person, name: "Henrique Faria")
+      expect(person.last_name).to eq("Faria")
+    end
+  end
 end
