@@ -16,4 +16,5 @@ class Person < ActiveRecord::Base
   has_many :children, through: :parent_children
   
   scope :exclude, ->(*people){ where.not(id: people) }
+  scope :match_last_name, ->(last_name){ where("name like '%#{last_name}'") }
 end

@@ -51,5 +51,16 @@ RSpec.describe Person, type: :model do
         expect(people).not_to include(@excluded_person)
       end
     end
+    
+    describe "matche_last_name" do
+      before do
+        @person = create(:person, name: "Bruno Faria")
+        create(:person)
+      end
+      
+      it "should get people that have the same last name" do
+        expect(Person.match_last_name("Faria")).to match_array([@person])
+      end
+    end
   end
 end
