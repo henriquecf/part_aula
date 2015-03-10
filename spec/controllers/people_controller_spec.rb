@@ -45,7 +45,7 @@ RSpec.describe PeopleController, type: :controller do
 
   describe "GET #index" do
     it "assigns all people as @people" do
-      person = create(:person)
+      person = create(:person, institution: institution)
       get :index, {institution_id: institution.id}, valid_session
       expect(assigns(:people)).to eq([person])
     end

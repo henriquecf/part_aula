@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = @institution.people.all
     
     respond_with(@institution, @people)
   end
@@ -28,8 +28,7 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
-    @person = Person.new(person_params)
-    @person.institution = @institution
+    @person = @institution.people.new(person_params)
     @person.save
     
     respond_with(@institution, @person)
@@ -52,7 +51,7 @@ class PeopleController < ApplicationController
   end
   
   def relate_parent
-    @parent = Person.find(params[:parent_id])
+    @parent = @institution.people.find(params[:parent_id])
     @person.parents << @parent
     
     respond_with(@institution, @person)
