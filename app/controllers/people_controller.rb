@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :relate_parent, :parent_search]
   before_action :set_institution
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :relate_parent, :parent_search]
 
   # GET /people
   # GET /people.json
@@ -65,7 +65,7 @@ class PeopleController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
-      @person = Person.find(params[:id])
+      @person = @institution.people.find(params[:id])
     end
     
     def set_institution

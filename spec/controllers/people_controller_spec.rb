@@ -53,7 +53,7 @@ RSpec.describe PeopleController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested person as @person" do
-      person = create(:person)
+      person = create(:person, institution: institution)
       get :show, {:id => person.to_param, institution_id: institution.id}, valid_session
       expect(assigns(:person)).to eq(person)
     end
@@ -68,7 +68,7 @@ RSpec.describe PeopleController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested person as @person" do
-      person = create(:person)
+      person = create(:person, institution: institution)
       get :edit, {:id => person.to_param, institution_id: institution.id}, valid_session
       expect(assigns(:person)).to eq(person)
     end
@@ -119,7 +119,7 @@ RSpec.describe PeopleController, type: :controller do
       }
 
       it "updates the requested person" do
-        person = create(:person)
+        person = create(:person, institution: institution)
         put :update, {:id => person.to_param, :person => new_attributes, institution_id: institution.id}, valid_session
         person.reload
         expect(person.name).to eq("Person 2")
@@ -127,13 +127,13 @@ RSpec.describe PeopleController, type: :controller do
       end
 
       it "assigns the requested person as @person" do
-        person = create(:person)
+        person = create(:person, institution: institution)
         put :update, {:id => person.to_param, :person => valid_attributes, institution_id: institution.id}, valid_session
         expect(assigns(:person)).to eq(person)
       end
 
       it "redirects to the person" do
-        person = create(:person)
+        person = create(:person, institution: institution)
         put :update, {:id => person.to_param, :person => valid_attributes, institution_id: institution.id}, valid_session
         expect(response).to redirect_to(institution_person_path(institution.id, person.id))
       end
@@ -141,13 +141,13 @@ RSpec.describe PeopleController, type: :controller do
 
     context "with invalid params" do
       it "assigns the person as @person" do
-        person = create(:person)
+        person = create(:person, institution: institution)
         put :update, {:id => person.to_param, :person => invalid_attributes, institution_id: institution.id}, valid_session
         expect(assigns(:person)).to eq(person)
       end
 
       it "re-renders the 'edit' template" do
-        person = create(:person)
+        person = create(:person, institution: institution)
         put :update, {:id => person.to_param, :person => invalid_attributes, institution_id: institution.id}, valid_session
         expect(response).to render_template("edit")
       end
@@ -156,14 +156,14 @@ RSpec.describe PeopleController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested person" do
-      person = create(:person)
+      person = create(:person, institution: institution)
       expect {
         delete :destroy, {:id => person.to_param, institution_id: institution.id}, valid_session
       }.to change(Person, :count).by(-1)
     end
 
     it "redirects to the people list" do
-      person = create(:person)
+      person = create(:person, institution: institution)
       delete :destroy, {:id => person.to_param, institution_id: institution.id}, valid_session
       expect(response).to redirect_to(institution_people_url(institution.id))
     end
@@ -171,8 +171,8 @@ RSpec.describe PeopleController, type: :controller do
   
   describe "POST #relate_parent" do
     before do
-      @child = create(:person)
-      @parent = create(:person)
+      @child = create(:person, institution: institution)
+      @parent = create(:person, institution: institution)
       post :relate_parent, id: @child.id, parent_id: @parent.id, institution_id: institution.id
     end
     
