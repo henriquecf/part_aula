@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :institutions, only: [] do
     resources :people do
       member do
+        get "parents/search", action: :parent_search
         post "parents/:parent_id", action: :relate_parent
       end
     end

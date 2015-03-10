@@ -35,5 +35,9 @@ RSpec.describe PeopleController, type: :routing do
       expect(:post => "/institutions/1/people/1/parents/2").to route_to("people#relate_parent", :id => "1", institution_id: "1", parent_id: "2")
     end
 
+    it "routes to #parent_search" do
+      expect(:get => "/institutions/1/people/1/parents/search").to route_to("people#parent_search", :id => "1", institution_id: "1")
+    end
+
   end
 end

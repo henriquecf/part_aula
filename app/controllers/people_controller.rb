@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :relate_parent]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :relate_parent, :parent_search]
   before_action :set_institution
 
   # GET /people
@@ -56,6 +56,10 @@ class PeopleController < ApplicationController
     @person.parents << @parent
     
     respond_with(@institution, @person)
+  end
+  
+  def parent_search
+    @possible_parents = @institution.people.where("name LIKE '%#{@person.name.split(" ").last}'").where.not(id: @person.id)
   end
 
   private

@@ -189,4 +189,20 @@ RSpec.describe PeopleController, type: :controller do
     end
   end
 
+  describe "GET #parent_search" do
+    before do
+      @person = create(:person, name: "Bruno Faria", institution: institution)
+      @person_with_same_last_name = create(:person, name: "Emely Faria", institution: institution)
+      other_person = create(:person, institution: institution)
+      get :parent_search, id: @person.id, institution_id: institution.id
+    end
+    
+    it "should render parent_search" do
+      expect(response).to render_template(:parent_search)
+    end
+    
+    it "should assign possible_parents" do
+      expect(assigns(:possible_parents)).to match_array([@person_with_same_last_name])
+    end
+  end
 end
