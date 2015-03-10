@@ -33,6 +33,12 @@ gem 'responders'
 
 gem 'devise'
 
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+  gem 'passenger'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
