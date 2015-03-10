@@ -1,6 +1,6 @@
 %p#notice= notice
 
 
-= link_to 'Edit', edit_person_path(@person)
+= link_to 'Edit', edit_institution_person_path(@institution, @person)
 \|
-= link_to 'Back', people_path
+= link_to 'Back', institution_people_path(@institution)

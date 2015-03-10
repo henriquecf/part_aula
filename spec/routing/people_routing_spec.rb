@@ -4,31 +4,35 @@ RSpec.describe PeopleController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/people").to route_to("people#index")
+      expect(:get => "/institutions/1/people").to route_to("people#index", institution_id: "1")
     end
 
     it "routes to #new" do
-      expect(:get => "/people/new").to route_to("people#new")
+      expect(:get => "/institutions/1/people/new").to route_to("people#new", institution_id: "1")
     end
 
     it "routes to #show" do
-      expect(:get => "/people/1").to route_to("people#show", :id => "1")
+      expect(:get => "/institutions/1/people/1").to route_to("people#show", :id => "1", institution_id: "1")
     end
 
     it "routes to #edit" do
-      expect(:get => "/people/1/edit").to route_to("people#edit", :id => "1")
+      expect(:get => "/institutions/1/people/1/edit").to route_to("people#edit", :id => "1", institution_id: "1")
     end
 
     it "routes to #create" do
-      expect(:post => "/people").to route_to("people#create")
+      expect(:post => "/institutions/1/people").to route_to("people#create", institution_id: "1")
     end
 
     it "routes to #update" do
-      expect(:put => "/people/1").to route_to("people#update", :id => "1")
+      expect(:put => "/institutions/1/people/1").to route_to("people#update", :id => "1", institution_id: "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/people/1").to route_to("people#destroy", :id => "1")
+      expect(:delete => "/institutions/1/people/1").to route_to("people#destroy", :id => "1", institution_id: "1")
+    end
+
+    it "routes to #relate_parent" do
+      expect(:post => "/institutions/1/people/1/parents/2").to route_to("people#relate_parent", :id => "1", institution_id: "1", parent_id: "2")
     end
 
   end

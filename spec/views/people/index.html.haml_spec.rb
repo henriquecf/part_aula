@@ -6,6 +6,7 @@ RSpec.describe "people/index", type: :view do
       create(:person),
       create(:person)
     ])
+    assign(:institution, create(:institution))
   end
 
   it "renders a list of people" do

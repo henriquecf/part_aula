@@ -1,18 +1,19 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :relate_parent]
+  before_action :set_institution
 
   # GET /people
   # GET /people.json
   def index
     @people = Person.all
     
-    respond_with(@people)
+    respond_with(@institution, @people)
   end
 
   # GET /people/1
   # GET /people/1.json
   def show
-    respond_with(@person)
+    respond_with(@institution, @person)
   end
 
   # GET /people/new
@@ -28,10 +29,10 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(person_params)
-    @person.institution = Institution.first
+    @person.institution = @institution
     @person.save
     
-    respond_with(@person)
+    respond_with(@institution, @person)
   end
 
   # PATCH/PUT /people/1
@@ -39,7 +40,7 @@ class PeopleController < ApplicationController
   def update
     @person.update(person_params)
     
-    respond_with(@person)
+    respond_with(@institution, @person)
   end
 
   # DELETE /people/1
@@ -47,20 +48,24 @@ class PeopleController < ApplicationController
   def destroy
     @person.destroy
     
-    respond_with(@person)
+    respond_with(@institution, @person)
   end
   
   def relate_parent
     @parent = Person.find(params[:parent_id])
     @person.parents << @parent
     
-    respond_with(@person)
+    respond_with(@institution, @person)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
+    end
+    
+    def set_institution
+      @institution = Institution.find(params[:institution_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
