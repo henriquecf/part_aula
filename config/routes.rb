@@ -9,4 +9,6 @@ Rails.application.routes.draw do
       end
     end
   end
+  
+  get "/" => "application#home"
 end
