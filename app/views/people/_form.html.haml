@@ -7,8 +7,7 @@
     = f.input :phone
     = f.input :gender, collection: [[t("male", default: "Male"), "M"], [t("female", default: "Female"), "F"]], include_blank: true
     = f.label :date_of_birth
-    .date_select
-      = f.date_select :date_of_birth, { order: [:day, :month, :year], prompt: { day: t("select_day", default: "Select day"), month: t("select_month", default: "Select month"), year: t("select_year", default: "Select year") }, start_year: (Time.now.year - 100), end_year: Time.now.year, selected: 10.years.ago, with_css_classes: true }, { class: "large-4 columns" }
+    = f.text_field :date_of_birth
 
   .form-actions
     = f.button :submit
