@@ -10,3 +10,5 @@
     %li
       = person.name
       = link_to t(".relate_parent", default: "Relate parent"), relate_parent_institution_person_path(@institution, @person, person), method: :post
+      
+= link_to t("back", default: "Back"), institution_person_path(@institution, @person)

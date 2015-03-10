@@ -3,6 +3,8 @@
 %table
   %thead
     %tr
+      %th= t(".name", default: "Name")
+      %th= t(".email", default: "Email")
       %th
       %th
       %th
@@ -10,6 +12,8 @@
   %tbody
     - @people.each do |person|
       %tr
+        %td= person.name
+        %td= person.email
         %td= link_to 'Show', institution_person_path(@institution, person)
         %td= link_to 'Edit', edit_institution_person_path(@institution, person)
         %td= link_to 'Destroy', institution_person_path(@institution, person), :method => :delete, :data => { :confirm => 'Are you sure?' }
