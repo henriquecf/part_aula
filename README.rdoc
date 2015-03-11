@@ -1,28 +1,16 @@
-== README
+== PartAula
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+{<img src="https://magnum.travis-ci.com/henriquecf/part_aula.svg?token=ZgZQ2kWgaytUQDePu3z8&branch=master" alt="Build Status" />}[https://magnum.travis-ci.com/henriquecf/part_aula]
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Requirements:
+
+* Rails 4.2
+
+* Ruby >= 2
+
+* Postgres DB >= 9.3
+
+* For the first time, run rake db:setup
+
+* To deploy on heroku, set heroku remote and run git push to it (do not forget to migrate if necessary)
