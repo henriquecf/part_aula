@@ -85,6 +85,10 @@ RSpec.describe Person, type: :model do
       it "should get person when name is set case insensitive" do
         expect(Person.name_like("faria")).to match_array([@person])
       end
+      
+      it "should get with first name" do
+        expect(Person.name_like("bruno")).to match_array([@person])
+      end
     end
   end
   
