@@ -31,9 +31,10 @@ gem 'responders'
 
 gem 'devise'
 
+gem 'pg'
+
 group :production do
-  gem 'rails_12factor'
-  gem 'pg'
+  gem 'rails_12factor' 
   gem 'passenger'
 end
 
@@ -47,7 +48,6 @@ end
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

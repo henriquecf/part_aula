@@ -16,8 +16,8 @@ class Person < ActiveRecord::Base
   has_many :children, through: :parent_children
   
   scope :exclude, ->(*people){ where.not(id: people) }
-  scope :match_last_name, ->(last_name){ where("name like '%#{last_name}'") }
-  scope :name_like, ->(name){ where("name like '%#{name}%'") }
+  scope :match_last_name, ->(last_name){ where("lower(name) like '%#{last_name.downcase}'") }
+  scope :name_like, ->(name){ where("lower(name) like '%#{name.downcase}%'") }
   
   def last_name
     name.split.last
@@ -25,5 +25,9 @@ class Person < ActiveRecord::Base
   
   def probable_parents
     Person.match_last_name(last_name).exclude(self)
+  end
+  
+  def add_parent(person)
+    ParentChild.create(child: self, parent: person)
   end
 end

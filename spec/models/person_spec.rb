@@ -85,6 +85,10 @@ RSpec.describe Person, type: :model do
       it "should get person when name is set case insensitive" do
         expect(Person.name_like("faria")).to match_array([@person])
       end
+      
+      it "should get with first name" do
+        expect(Person.name_like("bruno")).to match_array([@person])
+      end
     end
   end
   
@@ -112,6 +116,21 @@ RSpec.describe Person, type: :model do
     
     it "should not include who does not have same last name" do
       expect(@person.probable_parents).not_to include(@not_probable_parent)
+    end
+  end
+  
+  describe "#add_parent" do
+    before do
+      @person = create(:person)
+      @parent = create(:person)
+    end
+    
+    it "should return true when valid" do
+      expect(@person.add_parent(@parent)).to be_truthy
+    end
+    
+    it "should return the errors when same person" do
+      expect(@person.add_parent(@person).errors).not_to be_empty
     end
   end
 end

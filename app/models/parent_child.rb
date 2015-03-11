@@ -9,6 +9,6 @@ class ParentChild < ActiveRecord::Base
   private
   
   def different_child_and_parent
-    errors.add(:child_id, "Child must be different from parent") if parent_id == child_id
+    errors.add(:child_id, "must be different from parent") if parent_id == child_id
   end
 end

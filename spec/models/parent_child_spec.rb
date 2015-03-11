@@ -13,7 +13,7 @@ RSpec.describe ParentChild, type: :model do
         person = create(:person)
         parent_child = build(:parent_child, parent_id: person.id, child_id: person.id)
         parent_child.save
-        expect(parent_child.errors[:child_id]).to eq(["Child must be different from parent"])
+        expect(parent_child.errors[:child_id]).to eq(["must be different from parent"])
       end
     end
   end
