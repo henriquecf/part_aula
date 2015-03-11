@@ -3,8 +3,8 @@
 
   .form-inputs
     = f.input :name
-    = f.input :email
     = f.input :phone
+    = f.input :email
     = f.input :gender, collection: [[t("male", default: "Male"), "M"], [t("female", default: "Female"), "F"]], include_blank: true
     = f.label :date_of_birth
     = f.text_field :date_of_birth
