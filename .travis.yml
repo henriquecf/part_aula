@@ -2,9 +2,15 @@ language: ruby
 
 bundler_args: --without production
 
+before_script:
+  - psql -c 'create database partaula_test;' -U postgres
+
 rvm:
   - 2.2.1
 
 branches:
   only:
     - master
+
+addons:
+  postgresql: "9.3"
