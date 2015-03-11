@@ -3,7 +3,7 @@
 .panel
   %h4= @person.name
   %p= @person.email
-  %p= time_ago_in_words(@person.date_of_birth)
+  %p= time_ago_in_words(@person.date_of_birth) if @person.date_of_birth
   %p 
     = @person.parents.map { |parent| parent.name }
     = link_to t(".relate_parent", default: "Relate parent"), parent_search_institution_person_path(@institution, @person)
