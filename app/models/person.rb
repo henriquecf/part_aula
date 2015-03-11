@@ -26,4 +26,8 @@ class Person < ActiveRecord::Base
   def probable_parents
     Person.match_last_name(last_name).exclude(self)
   end
+  
+  def add_parent(person)
+    ParentChild.create(child: self, parent: person)
+  end
 end

@@ -118,4 +118,19 @@ RSpec.describe Person, type: :model do
       expect(@person.probable_parents).not_to include(@not_probable_parent)
     end
   end
+  
+  describe "#add_parent" do
+    before do
+      @person = create(:person)
+      @parent = create(:person)
+    end
+    
+    it "should return true when valid" do
+      expect(@person.add_parent(@parent)).to be_truthy
+    end
+    
+    it "should return the errors when same person" do
+      expect(@person.add_parent(@person).errors).not_to be_empty
+    end
+  end
 end
