@@ -11,4 +11,11 @@
     = csrf_meta_tags
   %body
     .row
+      - if notice
+        %p
+        %span.success.round.label= notice
+      - if alert
+        %p
+        %span.alert.round.label= alert if alert
+      %p
       = yield
