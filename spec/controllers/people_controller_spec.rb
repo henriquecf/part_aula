@@ -173,19 +173,39 @@ RSpec.describe PeopleController, type: :controller do
     before do
       @child = create(:person, institution: institution)
       @parent = create(:person, institution: institution)
-      post :relate_parent, id: @child.id, parent_id: @parent.id, institution_id: institution.id
     end
     
-    it "should relate @parent as parent of @child" do
-      expect(@child.parents).to include(@parent)
+    context "valid data" do
+      before do
+        post :relate_parent, id: @child.id, parent_id: @parent.id, institution_id: institution.id
+      end
+    
+      it "should relate @parent as parent of @child" do
+        expect(@child.parents).to include(@parent)
+      end
+    
+      it "should relate @parent as parent of @child" do
+        expect(@parent.children).to include(@child)
+      end
+    
+      it "should redirect to child" do
+        expect(response).to redirect_to(institution_person_path(institution.id, @child))
+      end
     end
     
-    it "should relate @parent as parent of @child" do
-      expect(@parent.children).to include(@child)
-    end
+    context "invalid data" do
+      before do
+        request.env["HTTP_REFERER"] = "where_i_came_from"
+        post :relate_parent, id: @child.id, parent_id: @child.id, institution_id: institution.id
+      end
     
-    it "should redirect to child" do
-      expect(response).to redirect_to(institution_person_path(institution.id, @child))
+      it "should redirect back" do
+        expect(response).to redirect_to("where_i_came_from")
+      end
+      
+      it "should flash the error message" do
+        expect(flash[:alert]).to eq("Child must be different from parent")
+      end
     end
   end
 

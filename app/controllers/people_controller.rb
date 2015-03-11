@@ -52,9 +52,13 @@ class PeopleController < ApplicationController
   
   def relate_parent
     @parent = @institution.people.find(params[:parent_id])
-    @person.parents << @parent
-    
-    respond_with(@institution, @person)
+    @parent_child = @person.add_parent(@parent)
+    if @parent_child.valid?
+      respond_with(@institution, @person)
+    else
+      flash[:alert] = @parent_child.errors.full_messages.first
+      redirect_to :back
+    end
   end
   
   def parent_search
