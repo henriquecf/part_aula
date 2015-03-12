@@ -16,8 +16,8 @@ class Person < ActiveRecord::Base
   has_many :children, through: :parent_children
   
   scope :exclude, ->(*people){ where.not(id: people) }
-  scope :match_last_name, ->(last_name){ where("lower(name) like '%#{last_name.downcase}'") }
-  scope :name_like, ->(name){ where("lower(name) like '%#{name.downcase}%'") }
+  scope :match_last_name, ->(last_name){ where("lower(name) like ?", "%#{last_name.downcase)}" }
+scope :name_like, ->(name){ where("lower(name) like ?", "%#{name.downcase}%") }
   
   def last_name
     name.split.last
