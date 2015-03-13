@@ -44,10 +44,11 @@ RSpec.describe PeopleController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all people as @people" do
+    it "assigns all people as @people in reverse order" do
       person = create(:person, institution: institution)
+      other_person = create(:person, institution: institution)
       get :index, {institution_id: institution.id}, valid_session
-      expect(assigns(:people)).to eq([person])
+      expect(assigns(:people)).to eq([other_person, person])
     end
   end
 

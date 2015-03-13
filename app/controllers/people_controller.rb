@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = @institution.people.all
+    @people = @institution.people.order(id: :desc).all
     
     respond_with(@institution, @people)
   end
