@@ -1,3 +1,5 @@
+= link_to 'New Person', new_institution_person_path(@institution)
+%br
 %h1 Listing people
 
 %table
@@ -17,7 +19,3 @@
         %td= link_to 'Show', institution_person_path(@institution, person)
         %td= link_to 'Edit', edit_institution_person_path(@institution, person)
         %td= link_to 'Destroy', institution_person_path(@institution, person), :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Person', new_institution_person_path(@institution)
