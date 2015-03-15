@@ -24,10 +24,6 @@ RSpec.describe PeopleController, type: :controller do
     @current_user = create(:user)
     sign_in(@current_user)
   end
-
-  # This should return the minimal set of attributes required to create a valid
-  # Person. As you add validations to Person, be sure to
-  # adjust the attributes here as well.
   let(:institution) { create(:institution) }
   
   let(:valid_attributes) {

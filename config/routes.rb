@@ -8,6 +8,8 @@ Rails.application.routes.draw do
         post "parents/:parent_id", action: :relate_parent, as: :relate_parent
       end
     end
+    
+    resources :grades
   end
   
   get "/" => "application#home"

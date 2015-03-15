@@ -1,0 +1,7 @@
+%h1 Editing grade
+
+= render 'form'
+
+= link_to 'Show', institution_grade_path(@institution, @grade)
+\|
+= link_to 'Back', institution_grades_path(@institution)
