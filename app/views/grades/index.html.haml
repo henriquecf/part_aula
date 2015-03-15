@@ -3,6 +3,8 @@
 %table
   %thead
     %tr
+      %th= t(".name", default: "Name")
+      %th= t(".year", default: "Year")
       %th
       %th
       %th
@@ -10,6 +12,8 @@
   %tbody
     - @grades.each do |grade|
       %tr
+        %td= grade.name
+        %td= grade.year
         %td= link_to 'Show', institution_grade_path(@institution, grade)
         %td= link_to 'Edit', edit_institution_grade_path(@institution, grade)
         %td= link_to 'Destroy', institution_grade_path(@institution, grade), :method => :delete, :data => { :confirm => 'Are you sure?' }
