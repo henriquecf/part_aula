@@ -1,0 +1,8 @@
+= simple_form_for([@institution, @grade, @meeting]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :date
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,7 @@
+%h1 Editing meeting
+
+= render 'form'
+
+= link_to 'Show', institution_grade_meeting_path(@institution, @grade, @meeting)
+\|
+= link_to 'Back', institution_grade_meetings_path(@institution, @grade)

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :grades
+    resources :grades do
+      resources :meetings
+    end
   end
   
   get "/" => "application#home"

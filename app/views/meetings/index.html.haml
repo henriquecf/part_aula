@@ -1,0 +1,21 @@
+%h1 Listing meetings
+
+%table
+  %thead
+    %tr
+      %th= t(".date", default: "Date")
+      %th
+      %th
+      %th
+
+  %tbody
+    - @meetings.each do |meeting|
+      %tr
+        %td= meeting.date
+        %td= link_to 'Show', institution_grade_meeting_path(@institution, @grade, meeting)
+        %td= link_to 'Edit', edit_institution_grade_meeting_path(@institution, @grade, meeting)
+        %td= link_to 'Destroy', institution_grade_meeting_path(@institution, @grade, meeting), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Meeting', new_institution_grade_meeting_path(@institution, @grade)
