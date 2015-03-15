@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
       render text: "You need to set a institution to get started"
     end
   end
+  
+  private 
+    
+    def set_institution
+      @institution = Institution.find(params[:institution_id])
+    end
 end

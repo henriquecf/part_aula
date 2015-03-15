@@ -50,9 +50,6 @@ class GradesController < ApplicationController
   end
 
   private
-    def set_institution
-      @institution = Institution.find(params[:institution_id])
-    end
   
     # Use callbacks to share common setup or constraints between actions.
     def set_grade

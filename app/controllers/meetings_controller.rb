@@ -52,9 +52,6 @@ class MeetingsController < ApplicationController
   end
 
   private
-    def set_institution
-      @institution = Institution.find(params[:institution_id])
-    end
     
     def set_grade
       @grade = @institution.grades.find(params[:grade_id])
