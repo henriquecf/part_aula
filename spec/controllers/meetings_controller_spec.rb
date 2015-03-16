@@ -63,6 +63,18 @@ RSpec.describe MeetingsController, type: :controller do
       get :new, {grade_id: grade.id, institution_id: institution.id}, valid_session
       expect(assigns(:meeting)).to be_a_new(Meeting)
     end
+    
+    context "attendances" do
+      before do
+        create(:enrollment, person: create(:person), grade: grade)
+        create(:enrollment, person: create(:person), grade: grade)
+        get :new, {grade_id: grade.id, institution_id: institution.id}, valid_session
+      end
+      
+      it "should build attendances for both people" do
+        expect(assigns(:meeting).attendances.size).to eq(2)
+      end
+    end
   end
 
   describe "GET #edit" do
@@ -89,6 +101,18 @@ RSpec.describe MeetingsController, type: :controller do
       it "redirects to the created meeting" do
         post :create, {:meeting => valid_attributes, grade_id: grade.id, institution_id: institution.id}, valid_session
         expect(response).to redirect_to(institution_grade_meeting_url(institution, grade, Meeting.last))
+      end
+      
+      context "permit attendance attributes" do
+        before do
+          skip "Check and correct this test"
+          attendances_attributes = [{person_id: create(:person).id, present: true}]
+          valid_attributes = { date: "2015-04-25", attendances_attributes: attendances_attributes }
+        end
+        
+        it "should allow to create attendances" do
+          expect { post :create, {:meeting => valid_attributes, grade_id: grade.id, institution_id: institution.id}, valid_session }.to change { Attendance.count }.by(1)
+        end
       end
     end
 

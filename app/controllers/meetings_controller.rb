@@ -20,6 +20,9 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     @meeting = Meeting.new
+    @grade.people.each do |person|
+      @meeting.attendances.build(person: person)
+    end
   end
 
   # GET /meetings/1/edit
@@ -64,6 +67,6 @@ class MeetingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_params
-      params.require(:meeting).permit(:date)
+      params.require(:meeting).permit(:date, attendances_attributes: [:person_id, :present])
     end
 end

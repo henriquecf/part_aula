@@ -3,6 +3,9 @@
 
   .form-inputs
     = f.input :date
+    = f.simple_fields_for :attendances do |attendances_fields|
+      = attendances_fields.input :person_id
+      = attendances_fields.input :present
 
   .form-actions
     = f.button :submit
