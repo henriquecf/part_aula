@@ -1,5 +1,5 @@
 class Attendance < ActiveRecord::Base
-  validates :person, :meeting, :present, presence: true
+  validates :person_id, :present, presence: true
   
   belongs_to :meeting
   belongs_to :person
