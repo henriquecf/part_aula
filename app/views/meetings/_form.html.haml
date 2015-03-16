@@ -3,9 +3,12 @@
 
   .form-inputs
     = f.input :date
-    = f.simple_fields_for :attendances do |attendances_fields|
-      = attendances_fields.input :person_id
-      = attendances_fields.input :present
+    - @meeting.attendances.each do |attendance|
+      = f.simple_fields_for :attendances, attendance do |attendance_fields|
+        = attendance_fields.hidden_field :person_id
+        = attendance_fields.hidden_field :id
+        = attendance.person.name
+        = attendance_fields.input :present
 
   .form-actions
     = f.button :submit
