@@ -7,5 +7,6 @@ RSpec.describe Meeting, type: :model do
     it { should belong_to(:grade) }
     it { should have_many(:attendances).inverse_of(:meeting) }
     it { should have_many(:people).through(:attendances) }
+    it { should accept_nested_attributes_for(:attendances) }
   end
 end
