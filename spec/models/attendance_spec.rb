@@ -6,5 +6,6 @@ RSpec.describe Attendance, type: :model do
     it { should belong_to(:meeting) }
     it { should validate_presence_of(:person) }
     it { should validate_presence_of(:meeting) }
+    it { should validate_presence_of(:present) }
   end
 end
