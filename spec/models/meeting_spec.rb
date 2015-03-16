@@ -4,6 +4,7 @@ RSpec.describe Meeting, type: :model do
   context "validations" do
     it { should validate_presence_of(:date) }
     it { should validate_presence_of(:grade) }
+    it { should validate_uniqueness_of(:date).scoped_to(:grade_id) }
     it { should belong_to(:grade) }
     it { should have_many(:attendances).inverse_of(:meeting) }
     it { should have_many(:people).through(:attendances) }
