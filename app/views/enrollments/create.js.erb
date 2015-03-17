@@ -1,0 +1,5 @@
+<%- if @enrollment.valid? %>
+  $("#enrollment_form .message").html("<%= escape_javascript(foundation_alert(flash[:notice], type: :success)) %>");
+<%- else %>
+  $("#enrollment_form .message").html("<%= escape_javascript(foundation_alert(@enrollment.errors.full_messages.first, type: :alert)) %>");
+<% end %>
