@@ -12,9 +12,9 @@ RSpec.describe "enrollments/new", type: :view do
 
     assert_select "form[action=?][method=?]", institution_person_enrollments_path(@institution, @person), "post" do
 
-      assert_select "input#enrollment_role[name=?]", "enrollment[role]"
+      assert_select "select#enrollment_role[name=?]", "enrollment[role]"
 
-      assert_select "input#enrollment_grade_id[name=?]", "enrollment[grade_id]"
+      assert_select "select#enrollment_grade_id[name=?]", "enrollment[grade_id]"
     end
   end
 end
