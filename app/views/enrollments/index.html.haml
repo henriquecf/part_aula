@@ -13,7 +13,7 @@
     - @enrollments.each do |enrollment|
       %tr
         %td= enrollment.role
-        %td= enrollment.grade_id
+        %td= enrollment.grade.name
         %td= link_to 'Show', institution_person_enrollment_path(@institution, @person, enrollment)
         %td= link_to 'Edit', edit_institution_person_enrollment_path(@institution, @person, enrollment)
         %td= link_to 'Destroy', institution_person_enrollment_path(@institution, @person, enrollment), :method => :delete, :data => { :confirm => 'Are you sure?' }

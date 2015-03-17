@@ -2,8 +2,8 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :role
-    = f.input :grade_id
+    = f.select :role, ["Evangelizando", "Evangelizador", "Monitor"]
+    = f.select :grade_id, @institution.grades.pluck(:name, :id)
 
   .form-actions
     = f.button :submit
