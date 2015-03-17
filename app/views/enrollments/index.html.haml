@@ -1,0 +1,23 @@
+%h1 Listing enrollments
+
+%table
+  %thead
+    %tr
+      %th Role
+      %th Grade
+      %th
+      %th
+      %th
+
+  %tbody
+    - @enrollments.each do |enrollment|
+      %tr
+        %td= enrollment.role
+        %td= enrollment.grade_id
+        %td= link_to 'Show', institution_person_enrollment_path(@institution, @person, enrollment)
+        %td= link_to 'Edit', edit_institution_person_enrollment_path(@institution, @person, enrollment)
+        %td= link_to 'Destroy', institution_person_enrollment_path(@institution, @person, enrollment), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Enrollment', new_institution_person_enrollment_path(@institution, @person)

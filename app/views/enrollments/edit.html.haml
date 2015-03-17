@@ -1,0 +1,7 @@
+%h1 Editing enrollment
+
+= render 'form'
+
+= link_to 'Show', institution_person_enrollment_path(@institution, @person, @enrollment)
+\|
+= link_to 'Back', institution_person_enrollments_path(@institution, @person)

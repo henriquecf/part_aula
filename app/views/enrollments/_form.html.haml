@@ -1,0 +1,9 @@
+= simple_form_for([@institution, @person, @enrollment]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :role
+    = f.input :grade_id
+
+  .form-actions
+    = f.button :submit

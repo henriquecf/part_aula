@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :enrollment do
-    role "MyString"
+    role "Role"
     person
     grade
   end

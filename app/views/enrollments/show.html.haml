@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Role:
+  = @enrollment.role
+%p
+  %b Grade:
+  = @enrollment.grade.name
+
+= link_to 'Edit', edit_institution_person_enrollment_path(@institution, @person, @enrollment)
+\|
+= link_to 'Back', institution_person_enrollments_path(@institution, @person)
