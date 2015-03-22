@@ -10,12 +10,31 @@
       %th
       %th
       %th
+      %th
       
   %tbody
     - @people.each do |person|
       %tr
         %td= person.name
         %td= person.email
+        %td
+          %a{href: "#", "data-reveal-id" => "enrollment_form", "data-person-id" => person.id}= "Enroll"
         %td= link_to 'Show', institution_person_path(@institution, person)
         %td= link_to 'Edit', edit_institution_person_path(@institution, person)
         %td= link_to 'Destroy', institution_person_path(@institution, person), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+#enrollment_form.reveal-modal{"aria-hidden" => "true", "aria-labelledby" => "modalTitle", "data-reveal" => "", :role => "dialog"}
+  .form
+    = t("loadind_please_wait", default: "Loading. Please wait.")
+  %p.message
+  %a.close-reveal-modal{"aria-label" => "Close"} ×
+  
+:javascript
+  $("a[data-reveal-id=enrollment_form]").click( function() {
+    var person_id = $(this).attr("data-person-id");
+    var institution_id = #{@institution.id};
+    var form_path = "/institutions/" + institution_id + "/people/" + person_id + "/enrollments/new";
+    var form_content = $.get(form_path, function(data) {
+      $("#enrollment_form .form").html(data);
+    });
+  });

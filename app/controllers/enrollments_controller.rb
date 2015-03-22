@@ -20,6 +20,8 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments/new
   def new
     @enrollment = Enrollment.new
+    
+    render :new, layout: false
   end
 
   # GET /enrollments/1/edit
